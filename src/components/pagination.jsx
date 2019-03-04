@@ -46,7 +46,7 @@ class Pagination extends Component {
     }
 
     // Print the page number for 1st 10 pages untill current page reaches in the middle
-    if (currentPage < numOfPageItems - 4 && (numOfPageItems => totalPages)) {
+    if (currentPage <= numOfPageItems - 4 && (numOfPageItems => totalPages)) {
       let end = totalPages > numOfPageItems ? numOfPageItems : totalPages;
       pages = [...pages, ...this.pageRange(1, end)];
     }
@@ -83,7 +83,7 @@ class Pagination extends Component {
             {pages.map((page, key) => {
               return (
                 <li
-                  onClick={e => this.props.onPageChange(page, e)}
+                  onClick={e => this.props.onPageChange(page, currentPage, e)}
                   className={`page-item ${
                     page === currentPage ? "active disabled" : ""
                   }`}

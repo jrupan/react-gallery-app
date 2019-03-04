@@ -46,7 +46,16 @@ class Gallery extends Component {
    * Handle page changes from pagination components and
    * load the images from API according to the page numbers
    */
-  handlePageChange = pageNumber => {
+  handlePageChange = (pageNumber, currentPage = null) => {
+    // Setting pageNumber for Next Button click
+    if (currentPage && pageNumber === "Next") {
+      pageNumber = currentPage + 1;
+    }
+    // Setting pageNumber for Previous Button click
+    if (currentPage && pageNumber === "Previous") {
+      pageNumber = currentPage - 1;
+    }
+
     this.getImages(pageNumber);
   };
 
