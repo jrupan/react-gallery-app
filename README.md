@@ -1,9 +1,10 @@
+### This APP will not work without 500px consumer_key
 ### Testing this APP using 500px API
 create a new file called `setting.json` inside the `src` directory and add consumer key as format below and save the changes
 ```
 { consumer_key: '########' }
 ```
-replace '########' with actual consumer key
+replace ######## with actual consumer key
 
 ### Features of this APP
 1. Get the images from 500px API and display in a grid
