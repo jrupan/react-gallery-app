@@ -8,7 +8,7 @@ import ImageComponent from "./imageComponent"; // Importing image component
 class Gallery extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: null }; // initializing data with null
+    this.state = { data: null, photo: null }; // initializing data and photo with null
   }
 
   /**
@@ -32,6 +32,14 @@ class Gallery extends Component {
     this.getImages();
   }
 
+  /**
+   * Handle photo click and set photo state
+   * responsible to track photo click
+   */
+  handlePhotoChange = photo => {
+    this.setState({ photo });
+  };
+
   render() {
     // object destructuring data
     const { data } = this.state;
@@ -46,7 +54,13 @@ class Gallery extends Component {
           {data &&
             data.photos.map((photo, index) => {
               // loading images from data
-              return <ImageComponent key={index} photo={photo} />;
+              return (
+                <ImageComponent
+                  key={index}
+                  photo={photo}
+                  onPhotoClick={this.handlePhotoChange}
+                />
+              );
             })}
         </div>
       </div>

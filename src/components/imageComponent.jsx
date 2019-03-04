@@ -7,7 +7,10 @@ class ImageComponet extends Component {
   }
   render() {
     return (
-      <div className="image-item">
+      <div
+        onClick={e => this.props.onPhotoClick(this.props.photo, e)}
+        className="image-item"
+      >
         <img
           src={this.props.photo.images[0].url}
           className="img-responsive"
