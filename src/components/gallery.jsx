@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import setting from "../setting.json"; // Importing consumer key from local file
 
 /**
  * Control entire gallery component
