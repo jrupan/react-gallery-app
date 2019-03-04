@@ -1,3 +1,23 @@
+### Testing this APP using 500px API
+create a new file called `setting.json` inside the `src` directory and add consumer key as format below and save the changes
+```
+{ consumer_key: '########' }
+```
+replace '########' with actual consumer key
+
+### Features of this APP
+1. Get the images from 500px API and display in a grid
+2. Simple Pagination for get additional image
+3. When click on individual image, simple lightbox will appear with minimal image information
+4. when click on anywhere on lightbox, lightbox will close and images grid will appear.
+
+TODO:
+navigate through images in the lightbox
+
+### NOTE:
+This app was built using Create React APP template. follow instruction below to test it.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
