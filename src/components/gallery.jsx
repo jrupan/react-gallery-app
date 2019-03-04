@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import setting from "../setting.json"; // Importing consumer key from local file
+import ImageComponent from "./imageComponent"; // Importing image component
 
 /**
  * Control entire gallery component
@@ -32,14 +33,22 @@ class Gallery extends Component {
   }
 
   render() {
-    console.log(this.state.data);
+    // object destructuring data
+    const { data } = this.state;
+
     return (
       <div className="container">
         <div className="row">
           <h1>Gallery</h1>
         </div>
         <div className="row m1">Pagination</div>
-        <div className="row">Images</div>
+        <div className="row">
+          {data &&
+            data.photos.map((photo, index) => {
+              // loading images from data
+              return <ImageComponent key={index} photo={photo} />;
+            })}
+        </div>
       </div>
     );
   }
