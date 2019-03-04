@@ -37,3 +37,11 @@ code {
   font-size: 17px;
   font-weight: bold;
 }
+
+.page-item.active.disabled .page-link {
+  background-color: lightgray;
+}
+
+.page-item .page-link {
+  cursor: pointer;
+}

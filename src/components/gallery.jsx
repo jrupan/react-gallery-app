@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import setting from "../setting.json"; // Importing consumer key from local file
 import ImageComponent from "./imageComponent"; // Importing image component
-import LightBox from "./lightBox"; // Importing image component
+import LightBox from "./lightBox"; // Importing simple lightBox component
+import Pagination from "./pagination"; // Importing simple pagination component
 
 /**
  * Control entire gallery component
@@ -41,6 +42,14 @@ class Gallery extends Component {
     this.setState({ photo });
   };
 
+  /**
+   * Handle page changes from pagination components and
+   * load the images from API according to the page numbers
+   */
+  handlePageChange = pageNumber => {
+    this.getImages(pageNumber);
+  };
+
   render() {
     // object destructuring data
     const { data } = this.state;
@@ -50,7 +59,18 @@ class Gallery extends Component {
         <div className="row">
           <h1>Gallery</h1>
         </div>
-        <div className="row m1">Pagination</div>
+        <div className="row m1">
+          <div align="center">
+            {data && (
+              <Pagination
+                currentPage={data.current_page}
+                totalPages={data.total_pages}
+                totalItems={data.total_items}
+                onPageChange={this.handlePageChange}
+              />
+            )}
+          </div>
+        </div>
         <LightBox
           onPhotoClick={this.handlePhotoChange}
           photo={this.state.photo}
