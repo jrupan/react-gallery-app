@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import setting from "../setting.json"; // Importing consumer key from local file
 import ImageComponent from "./imageComponent"; // Importing image component
+import LightBox from "./lightBox"; // Importing image component
 
 /**
  * Control entire gallery component
@@ -50,6 +51,10 @@ class Gallery extends Component {
           <h1>Gallery</h1>
         </div>
         <div className="row m1">Pagination</div>
+        <LightBox
+          onPhotoClick={this.handlePhotoChange}
+          photo={this.state.photo}
+        />
         <div className="row">
           {data &&
             data.photos.map((photo, index) => {
