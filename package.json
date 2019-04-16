@@ -2,6 +2,9 @@
   "name": "react-gallery-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.5.1"
+  },
   "dependencies": {
     "bootstrap": "^4.3.1",
     "react": "^16.8.3",
