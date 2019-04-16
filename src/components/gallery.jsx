@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import setting from "../setting.json"; // Importing consumer key from local file
+//import setting from "../setting.json"; // Importing consumer key from local file
 import ImageComponent from "./imageComponent"; // Importing image component
 import LightBox from "./lightBox"; // Importing simple lightBox component
 import Pagination from "./pagination"; // Importing simple pagination component
