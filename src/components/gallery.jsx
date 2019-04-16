@@ -18,9 +18,11 @@ class Gallery extends Component {
    * @param {number} pageNumber
    */
   getImages(pageNumber = 1) {
-    let apiUrl = `https://api.500px.com/v1/photos?feature=popular&image_size=20,2048&page=${pageNumber}&consumer_key=${
-      setting.consumer_key
-    }`;
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    let consumer_key = params.get("consumer_key");
+    console.log(consumer_key);
+    let apiUrl = `https://api.500px.com/v1/photos?feature=popular&image_size=20,2048&page=${pageNumber}&consumer_key=${consumer_key}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -63,6 +65,9 @@ class Gallery extends Component {
     // object destructuring data
     const { data } = this.state;
 
+    if (data && typeof data.error !== "undefined") {
+      return <p>{data.error}</p>;
+    }
     return (
       <div className="container">
         <div className="row">
