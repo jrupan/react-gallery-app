@@ -8,103 +8,103 @@ import Pagination from "./pagination"; // Importing simple pagination component
  * Control entire gallery component
  */
 class Gallery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: null, photo: null }; // initializing data and photo with null
-  }
+	constructor(props) {
+		super(props);
+		this.state = { data: null, photo: null }; // initializing data and photo with null
+	}
 
-  /**
-   * Getting images from API and setting state data
-   * @param {number} pageNumber
-   */
-  getImages(pageNumber = 1) {
-    let search = window.location.search;
-    let params = new URLSearchParams(search);
-    let consumer_key = params.get("consumer_key");
-    console.log(consumer_key);
-    let apiUrl = `https://api.500px.com/v1/photos?feature=popular&image_size=20,2048&page=${pageNumber}&consumer_key=${consumer_key}`;
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data: data });
-      })
-      .catch(err => console.error(this.props.url, err.toString()));
-  }
+	/**
+	 * Getting images from API and setting state data
+	 * @param {number} pageNumber
+	 */
+	getImages(pageNumber = 1) {
+		let search = window.location.search;
+		let params = new URLSearchParams(search);
+		let consumer_key = params.get("consumer_key");
+		console.log(consumer_key);
+		let apiUrl = `https://api.500px.com/v1/photos?feature=popular&image_size=20,2048&page=${pageNumber}&consumer_key=${consumer_key}`;
+		fetch(apiUrl)
+			.then(response => response.json())
+			.then(data => {
+				this.setState({ data: data });
+			})
+			.catch(err => console.error(this.props.url, err.toString()));
+	}
 
-  componentDidMount() {
-    // Initialize data from API after the component mount
-    this.getImages();
-  }
+	componentDidMount() {
+		// Initialize data from API after the component mount
+		this.getImages();
+	}
 
-  /**
-   * Handle photo click and set photo state
-   * responsible to track photo click
-   */
-  handlePhotoChange = photo => {
-    this.setState({ photo });
-  };
+	/**
+	 * Handle photo click and set photo state
+	 * responsible to track photo click
+	 */
+	handlePhotoChange = photo => {
+		this.setState({ photo });
+	};
 
-  /**
-   * Handle page changes from pagination components and
-   * load the images from API according to the page numbers
-   */
-  handlePageChange = (pageNumber, currentPage = null) => {
-    // Setting pageNumber for Next Button click
-    if (currentPage && pageNumber === "Next") {
-      pageNumber = currentPage + 1;
-    }
-    // Setting pageNumber for Previous Button click
-    if (currentPage && pageNumber === "Previous") {
-      pageNumber = currentPage - 1;
-    }
+	/**
+	 * Handle page changes from pagination components and
+	 * load the images from API according to the page numbers
+	 */
+	handlePageChange = (pageNumber, currentPage = null) => {
+		// Setting pageNumber for Next Button click
+		if (currentPage && pageNumber === "Next") {
+			pageNumber = currentPage + 1;
+		}
+		// Setting pageNumber for Previous Button click
+		if (currentPage && pageNumber === "Previous") {
+			pageNumber = currentPage - 1;
+		}
 
-    this.getImages(pageNumber);
-  };
+		this.getImages(pageNumber);
+	};
 
-  render() {
-    // object destructuring data
-    const { data } = this.state;
+	render() {
+		// object destructuring data
+		const { data } = this.state;
 
-    if (data && typeof data.error !== "undefined") {
-      return <p>{data.error}</p>;
-    }
-    return (
-      <div className="container">
-        <div className="row">
-          <h1>Gallery</h1>
-        </div>
-        <div className="row m1">
-          <div align="center">
-            {data && (
-              <Pagination
-                currentPage={data.current_page}
-                totalPages={data.total_pages}
-                totalItems={data.total_items}
-                onPageChange={this.handlePageChange}
-              />
-            )}
-          </div>
-        </div>
-        <LightBox
-          onPhotoClick={this.handlePhotoChange}
-          photo={this.state.photo}
-        />
-        <div className="row">
-          {data &&
-            data.photos.map((photo, index) => {
-              // loading images from data
-              return (
-                <ImageComponent
-                  key={index}
-                  photo={photo}
-                  onPhotoClick={this.handlePhotoChange}
-                />
-              );
-            })}
-        </div>
-      </div>
-    );
-  }
+		if (data && typeof data.error !== "undefined") {
+			return <p>{data.error}</p>;
+		}
+		return (
+			<div className="container">
+				<div className="row">
+					<h1>Gallery</h1>
+				</div>
+				<div className="row m1">
+					<div align="center">
+						{data && (
+							<Pagination
+								currentPage={data.current_page}
+								totalPages={data.total_pages}
+								totalItems={data.total_items}
+								onPageChange={this.handlePageChange}
+							/>
+						)}
+					</div>
+				</div>
+				<LightBox
+					onPhotoClick={this.handlePhotoChange}
+					photo={this.state.photo}
+				/>
+				<div className="row">
+					{data &&
+						data.photos.map((photo, index) => {
+							// loading images from data
+							return (
+								<ImageComponent
+									key={index}
+									photo={photo}
+									onPhotoClick={this.handlePhotoChange}
+								/>
+							);
+						})}
+				</div>
+			</div>
+		);
+	}
 }
 
 export default Gallery;
