@@ -22,7 +22,7 @@ class Gallery extends Component {
 		let params = new URLSearchParams(search);
 		let consumer_key = params.get("consumer_key");
 		console.log(consumer_key);
-		let apiUrl = `https://api.500px.com/v1/photos?feature=popular&image_size=20,2048&page=${pageNumber}&consumer_key=${consumer_key}`;
+		let apiUrl = `https://api.500px.com/v1/photos?feature=popular&image_size[]=20&image_size[]=2048&page=${pageNumber}&consumer_key=${consumer_key}`;
 		fetch(apiUrl)
 			.then(response => response.json())
 			.then(data => {
@@ -65,6 +65,19 @@ class Gallery extends Component {
 		// object destructuring data
 		const { data } = this.state;
 
+		const pagination = <div className="row m1">
+		<div align="center">
+			{data && (
+				<Pagination
+					currentPage={data.current_page}
+					totalPages={data.total_pages}
+					totalItems={data.total_items}
+					onPageChange={this.handlePageChange}
+				/>
+			)}
+		</div>
+	</div>
+
 		if (data && typeof data.error !== "undefined") {
 			return <p>{data.error}</p>;
 		}
@@ -73,18 +86,7 @@ class Gallery extends Component {
 				<div className="row">
 					<h1>Gallery</h1>
 				</div>
-				<div className="row m1">
-					<div align="center">
-						{data && (
-							<Pagination
-								currentPage={data.current_page}
-								totalPages={data.total_pages}
-								totalItems={data.total_items}
-								onPageChange={this.handlePageChange}
-							/>
-						)}
-					</div>
-				</div>
+				{ pagination }
 				<LightBox
 					onPhotoClick={this.handlePhotoChange}
 					photo={this.state.photo}
@@ -102,6 +104,8 @@ class Gallery extends Component {
 							);
 						})}
 				</div>
+				{ pagination }
+
 			</div>
 		);
 	}
