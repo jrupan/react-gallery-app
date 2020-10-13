@@ -40,8 +40,12 @@ class Gallery extends Component {
 	 * Handle photo click and set photo state
 	 * responsible to track photo click
 	 */
-	handlePhotoChange = photo => {
-		this.setState({ photo });
+	handlePhotoChange = ( photo, event ) => {
+		if ( event.target.classList.contains( 'nsfw' ) ) {
+			event.target.classList.remove( 'nsfw' );
+		} else {
+			this.setState({ photo });
+		}
 	};
 
 	/**
