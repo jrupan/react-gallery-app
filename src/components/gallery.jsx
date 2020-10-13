@@ -41,7 +41,7 @@ class Gallery extends Component {
 	 * responsible to track photo click
 	 */
 	handlePhotoChange = ( photo, event ) => {
-		if ( event.target.classList.contains( 'nsfw' ) ) {
+		if ( event && event.target && event.target.classList.contains( 'nsfw' ) ) {
 			event.target.classList.remove( 'nsfw' );
 		} else {
 			this.setState({ photo });
