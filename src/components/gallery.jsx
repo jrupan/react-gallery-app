@@ -91,7 +91,7 @@ class Gallery extends Component {
 					onPhotoClick={this.handlePhotoChange}
 					photo={this.state.photo}
 				/>
-				<div className="row">
+				<div className="image-container row">
 					{data &&
 						data.photos.map((photo, index) => {
 							// loading images from data

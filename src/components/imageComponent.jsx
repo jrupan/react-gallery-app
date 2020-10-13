@@ -6,10 +6,13 @@ class ImageComponet extends Component {
 		this.state = {};
 	}
 	render() {
+		const nsfw = this.props.photo.nsfw;
+		const nsfwClass = nsfw ? 'nsfw' : '';
+		const orientation = this.props.photo.width > this.props.photo.height ? 'landscape' : 'portrait';
 		return (
 			<div
 				onClick={e => this.props.onPhotoClick(this.props.photo, e)}
-				className="image-item"
+				className={`image-item ${nsfwClass} ${orientation}`}
 			>
 				<img
 					src={this.props.photo.images[0].url}

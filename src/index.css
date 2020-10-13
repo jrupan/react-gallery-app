@@ -1,47 +1,105 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 .image-item {
-  margin: 1px;
+	margin: 1px;
+	position: relative;
+}
+
+.image-item.nsfw::before {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(136, 136, 136, 0.918);;
+}
+
+.image-item.nsfw::after {
+	content: 'Click Here to see';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	color: black;
+	left: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	font-weight: bolder;
+	text-transform: uppercase;
+}
+/*
+.image-container {
+		flex-flow: row;
+		align-items: flex-start;
+}
+.image-item {
+		max-height: 100px;
+}
+.image-item.portrait {
+		height: 200px;
+		width: 100px;
+}
+.image-item.landscape {
+		height: 100px;
+		width: 200px;
+} */
+
+section{
+	display: flex;
+	flex-wrap: wrap;
+}
+.image-item{
+	flex-grow: 1;
+	margin: 2px;
+	height: 200px;
+}
+.image-item img{
+	height: 200px;
+	object-fit: cover;
+	max-width: 100%;
+	min-width: 100%;
+	vertical-align: bottom;
 }
 
 .lightbox {
-  background-color: white;
-  padding: 10px;
-  z-index: 9999;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: auto;
+	background-color: white;
+	padding: 10px;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow-y: auto;
 }
 
 .lightbox .item {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .item .title {
-  font-size: 17px;
-  font-weight: bold;
+	font-size: 17px;
+	font-weight: bold;
 }
 
 .page-item.active.disabled .page-link {
-  background-color: lightgray;
+	background-color: lightgray;
 }
 
 .page-item .page-link {
-  cursor: pointer;
+	cursor: pointer;
 }
