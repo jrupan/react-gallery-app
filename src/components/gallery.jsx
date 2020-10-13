@@ -22,6 +22,7 @@ class Gallery extends Component {
 		let params = new URLSearchParams(search);
 		let consumer_key = params.get("consumer_key");
 		console.log(consumer_key);
+		// let apiUrl = `https://api.500px.com/v1/photos?feature=upcoming&image_size[]=20&image_size[]=2048&page=${pageNumber}&consumer_key=${consumer_key}`;
 		let apiUrl = `https://api.500px.com/v1/photos?feature=popular&image_size[]=20&image_size[]=2048&page=${pageNumber}&consumer_key=${consumer_key}`;
 		fetch(apiUrl)
 			.then(response => response.json())
