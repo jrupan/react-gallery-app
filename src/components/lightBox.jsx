@@ -17,6 +17,7 @@ class LightBox extends Component {
 		const photo = this.props.photo;
 		if (this.props.photo && photo.images.length > 0) {
 			console.log({photo});
+			let photoSrc = photo.images.length > 1 ? this.props.photo.images[1].url : this.props.photo.images[0].url;
 			return (
 				<div
 					className="row lightbox"
@@ -24,7 +25,7 @@ class LightBox extends Component {
 					onClick={() => this.props.onPhotoClick(false)}
 				>
 					<div className="col-md-9 col-sm-12">
-						<img alt="" style={{maxWidth: "100%"}} src={this.props.photo.images[0].url} />
+						<img alt="" style={{maxWidth: "100%"}} src={photoSrc} />
 					</div>
 					<div className="col-md-3 col-cm-12">
 						<div className="item">
